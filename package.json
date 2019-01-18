@@ -17,6 +17,7 @@
     "ejs": "^2.3.3",
     "express": "^4.13.3",
     "express-session": "^1.11.3",
+    "mongodb-core": "file:node_modules/mongodb-core",
     "mongoose": "^5.3.13",
     "morgan": "^1.6.1",
     "passport": "^0.2.2",

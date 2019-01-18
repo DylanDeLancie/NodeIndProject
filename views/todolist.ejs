@@ -3,6 +3,8 @@
     <title>Node Authentication</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+    <link rel="stylesheet" href="styles.css"> <!-- load fontawesome -->
+
     <style>
         body        { padding-top:80px; }
     </style>
@@ -13,13 +15,33 @@
     <div class="jumbotron text-center">
         <h1><span class="fa fa-lock"></span> To Do List</h1>
         <form action="/todolist" method="POST">
-          <input type="text" placeholder="Activity" name="activity">
-          <input type="text" placeholder="Time" name="time">
+          <input type="text" placeholder="Task" name="task">
+          <input type="text" placeholder="Day" name="day">
+          <input type="number" placeholder="Time" name="time">
           <button type="submit">Submit</button>
         </form>
 
     </div>
 
   </div>
+  <br>
+
+
+<div id="center">
+  Your tasks:
+  <table style='align-center'>
+
+  <% for(var i = 0; i<tasks.length;i++) { %>
+    <tr >
+      <td align="center">
+      <td style="background-color:#FFFF00"><%= tasks[i].task %></td>
+      <td style="background-color:#FFFF00"><%= tasks[i].day %></td>
+      <td style="background-color:#FFFF00"><%= tasks[i].time %></td>
+    </tr>
+  <% } %>
+
+  </table>
+</div>
+
   </body>
   </html>

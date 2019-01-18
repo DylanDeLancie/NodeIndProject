@@ -1,6 +1,10 @@
 // app/routes.js
 module.exports = function(app, passport) {
 
+  var User = require('./models/user')
+  var Task = require('./models/task')
+
+
     // =====================================
     // HOME PAGE (with login links) ========
     // =====================================
@@ -52,20 +56,44 @@ module.exports = function(app, passport) {
             user : req.user // get the user out of session and pass to template
         });
     });
+
     app.get('/todolist', isLoggedIn, function(req, res){
-        res.render('todolist.ejs', {
-          user : req.user
-        });
+
+      Task.find({}, function(err, tasks) {
+           console.log(tasks);
+
+
+           res.render('todolist.ejs', {
+             user : req.user,
+             tasks: tasks
+           });
+
+
+         });
+
+
+
     });
+
     app.post('/todolist', (req, res) => {
-    db.collection('todo-list').find().toArray(function(err,result){
-     var id = result.length+1
-     var activity = req.body.activity
-     var name = req.body.user
-     db.collection('todo-list').insertOne({name:name, activity:activity, id:id})
-     console.log(result)
-     res.redirect('/')
-   })
+
+
+      var newTask = new Task({ task: req.body.task, day: req.body.day, time: req.body.time });
+          newTask.save(function (err) {
+            console.log("saved: " + newTask.name)
+            res.redirect('/todolist')
+      })
+
+
+
+      /* db.collection('todo-list').find().toArray(function(err,result){
+       var id = result.length+1
+       var activity = req.body.activity
+       var name = req.body.user
+       db.collection('tasks').insertOne({name:name, activity:activity, id:id})
+       console.log(result)
+       res.redirect('/')
+     }) */
 })
 
     // =====================================

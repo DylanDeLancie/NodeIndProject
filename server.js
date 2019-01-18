@@ -8,20 +8,14 @@ var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
-var db;
+var db
 
 // Connect to DB
 //var configDB = require('./config/database.js');
 
 
-//mongoose.connect('mongodb://dylancie:mLab_104@ds155903.mlab.com:55903/to-dolist', (err, client) => {
-//  if (err) return console.log(err)
-  //port = process.env.PORT || 80
-  //db = client.db('homework') // whatever your database name is
-  //app.listen(port, () => {
-    //console.log('listening on 80')
-  //})
-//})
+mongoose.connect('mongodb://testerdyl:tester1@ds155903.mlab.com:55903/to-dolist')
+
 // set up our express application
 app.set('view engine','ejs');
 app.use(express.static('public'));
